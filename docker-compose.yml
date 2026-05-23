@@ -11,10 +11,10 @@ services:
     depends_on:
       - db
     environment:
-      - DB_HOST=db
-      - DB_USER=phonetech
-      - DB_PASSWORD=phonetech_pass
-      - DB_NAME=phonetech_db
+      - DB_HOST=${DB_HOST}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
 
   db:
     image: mysql:8.0
@@ -22,10 +22,10 @@ services:
     ports:
       - "3306:3306"
     environment:
-      - MYSQL_ROOT_PASSWORD=root_pass
-      - MYSQL_DATABASE=phonetech_db
-      - MYSQL_USER=phonetech
-      - MYSQL_PASSWORD=phonetech_pass
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
     volumes:
       - db_data:/var/lib/mysql
 

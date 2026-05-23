@@ -21,7 +21,7 @@ require_once __DIR__ . '/components/header.php';
                     <a href="/reservar" class="btn btn-warning btn-lg px-4 me-md-2 fw-bold text-dark shadow-sm">
                         Reserva tu Cita
                     </a>
-                    <a href="/servicios" class="btn btn-outline-dark btn-lg px-4 shadow-sm">
+                    <a href="/catalogo" class="btn btn-outline-dark btn-lg px-4 shadow-sm">
                         Ver Precios
                     </a>
                 </div>

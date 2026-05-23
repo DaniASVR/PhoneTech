@@ -40,8 +40,8 @@ switch ($uri) {
         $controller->index();
         break;
 
-    case '/servicios':
-        require_once __DIR__ . '/../src/Views/servicios.php';
+    case '/catalogo':
+        require_once __DIR__ . '/../src/Views/catalogo.php';
         break;
 
     case '/reservar':

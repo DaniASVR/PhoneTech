@@ -40,7 +40,7 @@
                         <a class="nav-link" href="/">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/servicios">Servicios</a>
+                        <a class="nav-link" href="/catalogo">Catálogo</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/reservar">Reservar Cita</a>

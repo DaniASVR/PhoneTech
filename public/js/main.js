@@ -77,6 +77,47 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // alternar entre login y recuperacion de contrasena
+    const btnShowRecuperar = document.getElementById('btn-show-recuperar');
+    const btnShowLogin = document.getElementById('btn-show-login');
+    const loginSection = document.getElementById('login-section');
+    const recuperarSection = document.getElementById('recuperar-section');
+
+    if (btnShowRecuperar && btnShowLogin && loginSection && recuperarSection) {
+        btnShowRecuperar.addEventListener('click', function(e) {
+            e.preventDefault();
+            loginSection.classList.add('d-none');
+            recuperarSection.classList.remove('d-none');
+        });
+
+        btnShowLogin.addEventListener('click', function(e) {
+            e.preventDefault();
+            recuperarSection.classList.add('d-none');
+            loginSection.classList.remove('d-none');
+        });
+    }
+
+    // gestionar el envio del formulario de recuperacion (simulado en el cliente)
+    const formRecuperar = document.getElementById('form-recuperar');
+    if (formRecuperar) {
+        formRecuperar.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!formRecuperar.checkValidity()) {
+                e.stopPropagation();
+            } else {
+                const email = document.getElementById('email_recuperar').value;
+                alert('se ha enviado un correo con instrucciones a: ' + email);
+                formRecuperar.reset();
+                formRecuperar.classList.remove('was-validated');
+                recuperarSection.classList.add('d-none');
+                loginSection.classList.remove('d-none');
+            }
+            
+            formRecuperar.classList.add('was-validated');
+        });
+    }
 });
 
 // funcion para validar los datos del formulario de reserva con reglas personalizadas

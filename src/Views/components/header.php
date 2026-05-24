@@ -48,9 +48,25 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/contacto">Contacto</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">Área Cliente</a>
-                    </li>
+                    <?php if (isset($_SESSION['usuario_id'])): ?>
+                        <?php if ($_SESSION['usuario_rol'] === 'admin'): ?>
+                            <li class="nav-item">
+                                <a class="nav-link text-warning fw-bold" href="/admin">Panel de Control</a>
+                            </li>
+                        <?php endif; ?>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white fw-bold" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Hola, <?php echo htmlspecialchars($_SESSION['usuario_nombre']); ?>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end bg-dark border-secondary" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item text-white" href="/logout">Cerrar Sesión</a></li>
+                            </ul>
+                        </li>
+                    <?php else: ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">Login</a>
+                        </li>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>

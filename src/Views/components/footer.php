@@ -37,6 +37,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/js/main.js"></script>
+    <!-- nos aseguramos de que el navegador cargue la version mas reciente del archivo main.js -->
+    <script src="/js/main.js?v=<?php echo time(); ?>"></script>
 </body>
 </html>

@@ -46,3 +46,13 @@ nombre = VALUES(nombre),
 descripcion = VALUES(descripcion), 
 precio = VALUES(precio), 
 imagen = VALUES(imagen);
+
+-- Insertar usuarios semilla por defecto
+INSERT INTO usuarios (id, nombre, email, password, telefono, rol) VALUES 
+(1, 'Administrador PhoneTech', 'admin@phonetech.es', '$2y$10$SowG0rYSsMmpcDBw9Az2Se/8YLsZ2JGRg5xhLlbWGBO/sR4hQX1DG', '600111222', 'admin'),
+(2, 'Cliente de Prueba', 'cliente@phonetech.es', '$2y$10$SowG0rYSsMmpcDBw9Az2Se/8YLsZ2JGRg5xhLlbWGBO/sR4hQX1DG', '611222333', 'cliente')
+ON DUPLICATE KEY UPDATE 
+nombre = VALUES(nombre),
+password = VALUES(password),
+telefono = VALUES(telefono),
+rol = VALUES(rol);

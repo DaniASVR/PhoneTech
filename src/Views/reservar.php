@@ -95,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <h3 class="fw-bold text-dark mb-3">Cita Reservada con éxito</h3>
                             <p class="text-muted mb-4">
                                 Hemos registrado tu solicitud de cita para reparar tu <strong><?php echo htmlspecialchars($datos['dispositivo_modelo']); ?></strong>.
-                                Te esperamos el día <strong><?php echo date('d/m/Y a las H:i', strtotime($datos['fecha_hora'])); ?></strong>
+                                Te esperamos el día <strong><?php echo date('d/m/Y \a \l\a\s H:i', strtotime($datos['fecha_hora'])); ?></strong>
                             </p>
                             <div class="border rounded p-3 mb-4 bg-light text-start">
                                 <h6 class="fw-bold text-dark mb-2">Detalles del contacto:</h6>

@@ -1,4 +1,24 @@
 <?php
+// iniciamos la sesion de PHP para guardar los datos del usuario logueado en todo el sitio
+session_start();
+
+// autologin si la sesion esta vacia pero existe la cookie 'recordar_usuario'
+if (!isset($_SESSION['usuario_id']) && isset($_COOKIE['recordar_usuario'])) {
+    require_once __DIR__ . '/../config/database.php';
+    require_once __DIR__ . '/../src/Models/UsuarioModel.php';
+    
+    $database = new Database();
+    $db = $database->obtenerConexion();
+    $usuarioModel = new UsuarioModel($db);
+    $usuario = $usuarioModel->obtenerPorId(intval($_COOKIE['recordar_usuario']));
+    
+    if ($usuario) {
+        $_SESSION['usuario_id'] = $usuario['id'];
+        $_SESSION['usuario_nombre'] = $usuario['nombre'];
+        $_SESSION['usuario_rol'] = $usuario['rol'];
+    }
+}
+
 /*El spl_autoload_register es una funcion que se encarga de cargar las clases que no se han incluido manualmente
 y asi nos evitamos tener que estar metiendo require o include en cada archivo, ademas nos ahorra lineas de codigo y hace que el codigo sea mas limpio*/
 
@@ -63,6 +83,16 @@ switch ($uri) {
 
     case '/admin':
         require_once __DIR__ . '/../src/Views/admin.php';
+        break;
+
+    case '/logout':
+        // borramos la cookie de recordar sesion del navegador
+        setcookie('recordar_usuario', '', time() - 3600, "/");
+
+        // destruimos la sesion actual para cerrar sesion
+        session_destroy();
+        header('Location: /login');
+        exit();
         break;
 
     // Si la ruta no coincide con ninguna de las anteriores, devolvemos error 404

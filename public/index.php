@@ -48,9 +48,6 @@ switch ($uri) {
         require_once __DIR__ . '/../src/Views/reservar.php';
         break;
 
-    case '/buscar-cita':
-        require_once __DIR__ . '/../src/Views/buscar-cita.php';
-        break;
 
     case '/contacto':
         require_once __DIR__ . '/../src/Views/contacto.php';

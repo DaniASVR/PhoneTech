@@ -37,11 +37,12 @@ CREATE TABLE IF NOT EXISTS citas (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Insertar servicios por defecto
-INSERT INTO servicios (nombre, descripcion, precio, imagen) VALUES 
-('Cambio de Pantalla', 'Reparación completa del panel táctil y cristal.', 129.99, '/images/screen_repair.png'),
-('Cambio de Batería', 'Sustitución de batería degradada por una nueva.', 59.99, '/images/battery_repair.png'),
-('Conector de Carga', 'Reparación o cambio del puerto de carga Lightning.', 49.99, '/images/connector_repair.png')
+INSERT INTO servicios (id, nombre, descripcion, precio, imagen) VALUES 
+(1, 'Cambio de Pantalla', 'Reparación completa del panel táctil y cristal.', 129.99, '/images/screen_repair.png'),
+(2, 'Cambio de Batería', 'Sustitución de batería degradada por una nueva.', 59.99, '/images/battery_repair.png'),
+(3, 'Conector de Carga', 'Reparación o cambio del puerto de carga Lightning.', 49.99, '/images/connector_repair.png')
 ON DUPLICATE KEY UPDATE 
+nombre = VALUES(nombre),
 descripcion = VALUES(descripcion), 
 precio = VALUES(precio), 
 imagen = VALUES(imagen);

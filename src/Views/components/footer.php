@@ -5,7 +5,7 @@
                 <div class="col-md-4 mb-3">
                     <h5 class="text-uppercase fw-bold text-warning">PhoneTech</h5>
                     <p class="small text-white">
-                        Tu taller de confianza en Torrevieja para la reparación de smartphones y tablets. Ofrecemos repuestos de calidad y garantía en todas nuestras reparaciones.
+                        Tu taller de confianza en Torrevieja para la reparación de smartphones y tablets.
                     </p>
                 </div>
 
@@ -21,8 +21,8 @@
 
                 <div class="col-md-4 mb-3">
                     <h5 class="text-uppercase fw-bold text-white">Contacto</h5>
-                    <p class="small text-white mb-1">📍 Calle Aleatoria, 67, Torrevieja</p>
-                    <p class="small text-white mb-1">📞 600 000 000</p>
+                    <p class="small text-white mb-1">📍 Calle Aleatoria, 99, Torrevieja</p>
+                    <p class="small text-white mb-1">📞 612 345 678</p>
                     <p class="small text-white mb-1">✉️ contacto@phonetech.es</p>
                 </div>
             </div>

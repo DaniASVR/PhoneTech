@@ -46,9 +46,6 @@
                         <a class="nav-link" href="/reservar">Reservar Cita</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/buscar-cita">Buscar Cita</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="/contacto">Contacto</a>
                     </li>
                     <li class="nav-item">

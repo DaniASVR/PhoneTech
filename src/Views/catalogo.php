@@ -64,7 +64,7 @@ $reparaciones = $servicioModel->obtenerTodos();
                             <div class="mt-3">
                                 <h3 class="text-warning fw-bold mb-3"><?php echo number_format($r['precio'], 2); ?>€</h3>
                                 <div>
-                                    <a href="/reservar" class="btn btn-outline-warning w-100 fw-bold text-dark">Reservar Cita</a>
+                                    <a href="/reservar?servicio_id=<?php echo $r['id']; ?>" class="btn btn-outline-warning w-100 fw-bold text-dark">Reservar Cita</a>
                                 </div>
                             </div>
                         </div>

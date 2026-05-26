@@ -118,7 +118,55 @@ document.addEventListener('DOMContentLoaded', function() {
             formRecuperar.classList.add('was-validated');
         });
     }
+
+    // validador del formulario de registro
+    const formRegistro = document.getElementById('form-registro');
+    if (formRegistro) {
+        formRegistro.addEventListener('submit', function(event) {
+            // si la validacion propia del navegador falla, detenemos el envio
+            if (!formRegistro.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            
+            // añadimos la clase de bootstrap para pintar los errores
+            formRegistro.classList.add('was-validated');
+
+            // si pasa la validacion nativa, comprobamos las reglas personalizadas
+            if (formRegistro.checkValidity()) {
+                const password = document.getElementById('password').value;
+                const passwordConfirm = document.getElementById('password_confirm').value;
+                const telefono = document.getElementById('telefono').value;
+
+                // verificar longitud de la contraseña
+                if (password.length < 6) {
+                    alert('la contraseña debe tener al menos 6 caracteres.');
+                    event.preventDefault();
+                    event.stopPropagation();
+                    return;
+                }
+
+                // verificar que coincidan las contraseñas
+                if (password !== passwordConfirm) {
+                    alert('las contraseñas introducidas no coinciden.');
+                    event.preventDefault();
+                    event.stopPropagation();
+                    return;
+                }
+
+                // validar el formato del numero de telefono
+                const regexTelefono = /^[0-9]{9,15}$/;
+                if (!regexTelefono.test(telefono.trim())) {
+                    alert('por favor, introduce un numero de telefono valido (solo digitos, entre 9 y 15).');
+                    event.preventDefault();
+                    event.stopPropagation();
+                    return;
+                }
+            }
+        });
+    }
 });
+
 
 // funcion para validar los datos del formulario de reserva con reglas personalizadas
 function validarCita(datos) {

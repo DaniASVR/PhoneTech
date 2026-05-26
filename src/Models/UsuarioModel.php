@@ -31,4 +31,21 @@ class UsuarioModel {
         
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+        // metodo para registrar un nuevo usuario en la base de datos (por defecto rol cliente)
+    public function crear($nombre, $email, $password, $telefono, $rol = 'cliente') {
+        $sql = "INSERT INTO usuarios (nombre, email, password, telefono, rol) 
+                VALUES (:nombre, :email, :password, :telefono, :rol)";
+        
+        $stmt = $this->conexion->prepare($sql);
+        
+        // enlazamos los parametros de forma segura para prevenir inyecciones SQL
+        $stmt->bindParam(':nombre', $nombre);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':password', $password);
+        $stmt->bindParam(':telefono', $telefono);
+        $stmt->bindParam(':rol', $rol);
+        
+        return $stmt->execute();
+    }
 }
+

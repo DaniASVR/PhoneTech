@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS citas (
     servicio_id INT NOT NULL,
     fecha_hora DATETIME NOT NULL,
     direccion_facturacion TEXT NULL,
+    comentarios TEXT NULL,
     estado ENUM('pendiente', 'completada', 'cancelada') DEFAULT 'pendiente',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE SET NULL,

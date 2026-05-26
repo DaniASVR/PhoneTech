@@ -38,6 +38,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <p class="mb-2"><strong>Correo:</strong> contacto@phonetech.es</p>
                 <hr>
             </div>
+
+            <!-- bloque informativo de Sobre Nosotros -->
+            <div class="p-4 rounded border mt-4 bg-light">
+                <h3 class="fw-bold text-dark mb-3">Sobre Nosotros</h3>
+                <p class="text-muted mb-3" style="font-size: 0.95rem;">
+                    Somos un taller pequeño en Torrevieja enfocado en dar una alternativa rápida y de total confianza para reparar móviles y tablets. Como sabemos lo fastidioso que es quedarse incomunicado, intentamos solucionar cada avería en el menor tiempo posible.
+                </p>
+                <h5 class="fw-bold text-dark mb-2" style="font-size: 1.05rem;">¿Cómo trabajamos?</h5>
+                <ul class="text-muted ps-3 mb-3" style="font-size: 0.9rem;">
+                    <li class="mb-2"><strong>Sin sorpresas:</strong> Te damos un precio cerrado antes de empezar a tocar el teléfono. Si vemos algo más al abrirlo, te llamamos primero.</li>
+                    <li class="mb-2"><strong>Garantía real:</strong> Todas las reparaciones que hacemos tienen su garantía por escrito. Si la pieza falla, lo solucionamos sin coste.</li>
+                    <li class="mb-2"><strong>Buenos materiales:</strong> Preferimos usar repuestos que duren antes que componentes baratos de mala calidad que den fallos de táctil.</li>
+                </ul>
+                <h5 class="fw-bold text-dark mb-2" style="font-size: 1.05rem;">El Equipo</h5>
+                <p class="text-muted mb-0" style="font-size: 0.9rem;">
+                    El taller lo llevamos dos técnicos apasionados por la electrónica y con titulación. Nos encargamos de todo el proceso de reparación manual en nuestro propio local de Torrevieja.
+                </p>
+            </div>
         </div>
 
         <!-- Columna del Formulario de Contacto -->

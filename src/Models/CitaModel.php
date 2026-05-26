@@ -18,6 +18,7 @@ class CitaModel {
                     dispositivo_modelo, 
                     servicio_id, 
                     fecha_hora, 
+                    comentarios,
                     estado
                 ) VALUES (
                     :usuario_id, 
@@ -27,6 +28,7 @@ class CitaModel {
                     :dispositivo_modelo, 
                     :servicio_id, 
                     :fecha_hora, 
+                    :comentarios,
                     'pendiente'
                 )";
 
@@ -44,6 +46,7 @@ class CitaModel {
         $stmt->bindParam(':dispositivo_modelo', $datos['dispositivo_modelo']);
         $stmt->bindParam(':servicio_id', $datos['servicio_id'], PDO::PARAM_INT);
         $stmt->bindParam(':fecha_hora', $datos['fecha_hora']);
+        $stmt->bindParam(':comentarios', $datos['comentarios']);
 
         return $stmt->execute();
     }
@@ -58,4 +61,47 @@ class CitaModel {
         // si el conteo es 0, significa que la hora esta libre
         return intval($stmt->fetchColumn()) === 0;
     }
+
+    // metodo para obtener el listado completo de citas con los datos del cliente y servicio correspondientes
+    public function obtenerTodas() {
+        $sql = "SELECT 
+                    c.id, 
+                    c.usuario_id,
+                    u.nombre AS usuario_nombre,
+                    u.email AS usuario_email,
+                    u.telefono AS usuario_telefono,
+                    c.nombre_noregistrado,
+                    c.email_noregistrado,
+                    c.telefono_noregistrado,
+                    c.dispositivo_modelo,
+                    c.comentarios,
+                    c.servicio_id,
+                    s.nombre AS servicio_nombre,
+                    s.precio AS servicio_precio,
+                    c.fecha_hora,
+                    c.estado,
+                    c.created_at
+                FROM citas c
+                INNER JOIN servicios s ON c.servicio_id = s.id
+                LEFT JOIN usuarios u ON c.usuario_id = u.id
+                ORDER BY c.fecha_hora DESC";
+        
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->execute();
+        
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+    // metodo para actualizar el estado de una cita
+    public function actualizarEstado($id, $estado) {
+        $sql = "UPDATE citas SET estado = :estado WHERE id = :id";
+        
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindParam(':estado', $estado);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        
+        return $stmt->execute();
+    }
 }
+

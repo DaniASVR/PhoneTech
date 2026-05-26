@@ -24,12 +24,24 @@ $datos = [
     'servicio_id' => '',
     'fecha_hora' => '',
     'fecha' => '',
-    'hora' => ''
+    'hora' => '',
+    'comentarios' => ''
 ];
 
 // comprobar si nos viene un servicio_id por la URL desde catalogo
 if (isset($_GET['servicio_id'])) {
     $datos['servicio_id'] = intval($_GET['servicio_id']);
+}
+
+// si el usuario tiene una sesion activa, rellenar los datos automaticamente
+if (isset($_SESSION['usuario_id'])) {
+    $usuarioModel = new UsuarioModel($db);
+    $usuarioInfo = $usuarioModel->obtenerPorId($_SESSION['usuario_id']);
+    if ($usuarioInfo) {
+        $datos['nombre_noregistrado'] = $usuarioInfo['nombre'];
+        $datos['email_noregistrado'] = $usuarioInfo['email'];
+        $datos['telefono_noregistrado'] = $usuarioInfo['telefono'];
+    }
 }
 
 // procesar el envio del formulario mediante POST
@@ -45,7 +57,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $datos['hora'] = isset($_POST['hora']) ? trim($_POST['hora']) : '';
     $datos['fecha_hora'] = ($datos['fecha'] !== '' && $datos['hora'] !== '') ? $datos['fecha'] . ' ' . $datos['hora'] . ':00' : '';
     
-    $datos['usuario_id'] = null; // de momento no hay login implementado
+    $datos['usuario_id'] = isset($_SESSION['usuario_id']) ? $_SESSION['usuario_id'] : null;
+    $datos['comentarios'] = isset($_POST['comentarios']) ? trim($_POST['comentarios']) : '';
+
 
     // validacion sencilla en el lado del servidor
     if (empty($datos['nombre_noregistrado']) || empty($datos['email_noregistrado']) || empty($datos['telefono_noregistrado']) || empty($datos['dispositivo_modelo']) || empty($datos['servicio_id']) || empty($datos['fecha']) || empty($datos['hora'])) {
@@ -101,7 +115,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <h6 class="fw-bold text-dark mb-2">Detalles del contacto:</h6>
                                 <p class="mb-1"><strong>Nombre:</strong> <?php echo htmlspecialchars($datos['nombre_noregistrado']); ?></p>
                                 <p class="mb-1"><strong>Teléfono:</strong> <?php echo htmlspecialchars($datos['telefono_noregistrado']); ?></p>
-                                <p class="mb-0"><strong>Correo:</strong> <?php echo htmlspecialchars($datos['email_noregistrado']); ?></p>
+                                <p class="mb-1"><strong>Correo:</strong> <?php echo htmlspecialchars($datos['email_noregistrado']); ?></p>
+                                <?php if (!empty($datos['comentarios'])): ?>
+                                    <p class="mb-0 mt-2 border-top pt-2"><strong>Notas sobre la avería:</strong><br><?php echo nl2br(htmlspecialchars($datos['comentarios'])); ?></p>
+                                <?php endif; ?>
                             </div>
                             <a href="/catalogo" class="btn btn-warning fw-bold text-dark px-4 py-2 shadow-sm">Volver al Catálogo</a>
                         </div>
@@ -174,7 +191,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                  </div>
                              </div>
 
-                            <button type="submit" class="btn btn-warning btn-lg w-100 fw-bold text-dark py-3 shadow-sm">Confirmar Reserva de Cita</button>
+                             <div class="mb-4">
+                                 <label for="comentarios" class="form-label fw-bold">Comentarios Relevantes / Notas de la Avería</label>
+                                 <textarea class="form-control py-2" id="comentarios" name="comentarios" rows="3" placeholder="Describe brevemente qué le ocurre al dispositivo (opcional)"><?php echo htmlspecialchars($datos['comentarios']); ?></textarea>
+                             </div>
+
+                             <button type="submit" class="btn btn-warning btn-lg w-100 fw-bold text-dark py-3 shadow-sm">Confirmar Reserva de Cita</button>
                         </form>
                     <?php endif; ?>
                 </div>

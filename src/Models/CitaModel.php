@@ -103,5 +103,47 @@ class CitaModel {
         
         return $stmt->execute();
     }
+
+    // metodo para obtener una cita especifica por su ID
+    public function obtenerPorId($id) {
+        $sql = "SELECT * FROM citas WHERE id = :id";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    // metodo para actualizar los datos editables de una cita
+    public function actualizar($id, $datos) {
+        $sql = "UPDATE citas SET 
+                    nombre_noregistrado = :nombre,
+                    telefono_noregistrado = :telefono,
+                    email_noregistrado = :email,
+                    dispositivo_modelo = :dispositivo,
+                    servicio_id = :servicio_id,
+                    fecha_hora = :fecha_hora,
+                    comentarios = :comentarios
+                WHERE id = :id";
+        
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':nombre', $datos['nombre_noregistrado']);
+        $stmt->bindParam(':telefono', $datos['telefono_noregistrado']);
+        $stmt->bindParam(':email', $datos['email_noregistrado']);
+        $stmt->bindParam(':dispositivo', $datos['dispositivo_modelo']);
+        $stmt->bindParam(':servicio_id', $datos['servicio_id'], PDO::PARAM_INT);
+        $stmt->bindParam(':fecha_hora', $datos['fecha_hora']);
+        $stmt->bindParam(':comentarios', $datos['comentarios']);
+        
+        return $stmt->execute();
+    }
+
+    // metodo para eliminar fisicamente una cita de la base de datos
+    public function eliminar($id) {
+        $sql = "DELETE FROM citas WHERE id = :id";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
 }
 

@@ -16,6 +16,11 @@
     
     <!-- Enlace al CSS de Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- enlace a bootstrap icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <!-- favicon con emoji de llave inglesa -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔧</text></svg>">
     
     <!-- Google Fonts: Roboto -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,7 +35,11 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             
-            <a class="navbar-brand font-weight-bold" href="/">PhoneTech</a>
+            <!-- logo con icono de llave inglesa en la barra de navegacion -->
+            <a class="navbar-brand font-weight-bold d-flex align-items-center gap-2" href="/">
+                <i class="bi bi-wrench-adjustable text-warning"></i>
+                <span>PhoneTech</span>
+            </a>
             
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,7 +48,7 @@
             
             <!-- Enlaces del menu de navegacion -->
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav ms-auto gap-2 gap-lg-3 align-items-lg-center">
                     <li class="nav-item">
                         <a class="nav-link" href="/">Inicio</a>
                     </li>
@@ -68,7 +77,7 @@
                         </li>
                     <?php else: ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="/login">Login</a>
+                            <a class="btn btn-warning text-dark fw-bold px-3" href="/login">Login</a>
                         </li>
                     <?php endif; ?>
                 </ul>
